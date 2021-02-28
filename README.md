@@ -8,7 +8,7 @@ This is a test project created to demonstrate a simple price calculator using Ja
 
 
 # Import the code directly to the Preferred IDE
-Spring Tool Suite (STS)
+Spring Tool Suite (STS) or
 IntelliJ IDEA
 
 # Introduction
