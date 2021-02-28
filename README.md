@@ -28,7 +28,7 @@ The DB scripts for the project are as follows:
 CREATE DATABASE IF NOT EXISTS `product_prices`;
 USE `product_prices`;
 
-//Creating Price table
+/*Creating Price table*/
 CREATE TABLE IF NOT EXISTS `price` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `product_id` int(4) DEFAULT NULL,
@@ -39,19 +39,19 @@ CREATE TABLE IF NOT EXISTS `price` (
   CONSTRAINT `FK_price_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
-//Inserting data into the Price table
+/*Inserting data into the Price table*/
 INSERT INTO `price` (`id`, `product_id`, `carton_size`, `carton_price`) VALUES
 	(1, 1, '20', 175),
 	(2, 2, '5', 825);
 
-//Creating Product table
+/*Creating Product table*/
 CREATE TABLE IF NOT EXISTS `product` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `product_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
-//Inserting data into the Product table
+/*Inserting data into the Product table*/
 INSERT INTO `product` (`id`, `product_name`) VALUES
 	(1, 'penguinEars'),
 	(2, 'horseShoes');
