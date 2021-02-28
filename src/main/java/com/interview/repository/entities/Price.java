@@ -23,14 +23,13 @@ public class Price implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(unique=true, nullable=false, precision=10)
     private int id;
-    @Column(name="unit_price", length=20)
-    private String unitPrice;
-    @Column(name="carton_price", length=20)
-    private String cartonPrice;
+    @Column(name="carton_size", length=20)
+    private String cartonSize;
+    @Column(name="carton_price", precision=22)
+    private double cartonPrice;
     @ManyToOne
     @JoinColumn(name="product_id")
     private Product product;
-
 
     /** Default constructor. */
     public Price() {
@@ -56,21 +55,21 @@ public class Price implements Serializable {
     }
 
     /**
-     * Access method for unitPrice.
+     * Access method for cartonSize.
      *
-     * @return the current value of unitPrice
+     * @return the current value of cartonSize
      */
-    public String getUnitPrice() {
-        return unitPrice;
+    public String getCartonSize() {
+        return cartonSize;
     }
 
     /**
-     * Setter method for unitPrice.
+     * Setter method for cartonSize.
      *
-     * @param aUnitPrice the new value for unitPrice
+     * @param aCartonSize the new value for cartonSize
      */
-    public void setUnitPrice(String aUnitPrice) {
-        unitPrice = aUnitPrice;
+    public void setCartonSize(String aCartonSize) {
+        cartonSize = aCartonSize;
     }
 
     /**
@@ -78,7 +77,7 @@ public class Price implements Serializable {
      *
      * @return the current value of cartonPrice
      */
-    public String getCartonPrice() {
+    public double getCartonPrice() {
         return cartonPrice;
     }
 
@@ -87,7 +86,7 @@ public class Price implements Serializable {
      *
      * @param aCartonPrice the new value for cartonPrice
      */
-    public void setCartonPrice(String aCartonPrice) {
+    public void setCartonPrice(double aCartonPrice) {
         cartonPrice = aCartonPrice;
     }
 
@@ -180,4 +179,5 @@ public class Price implements Serializable {
     }
 
 }
+
 

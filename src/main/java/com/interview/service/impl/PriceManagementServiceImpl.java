@@ -9,11 +9,15 @@ import com.interview.dto.response.PriceListResponse;
 import com.interview.repository.ProductRepository;
 import com.interview.repository.entities.Product;
 import com.interview.service.PriceManagementService;
+import com.interview.utils.Constants;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PriceManagementServiceImpl implements PriceManagementService {
@@ -23,23 +27,21 @@ public class PriceManagementServiceImpl implements PriceManagementService {
     private final PriceCalculateComponent priceCalculateComponent;
     private final PriceReturningComponent priceReturningComponent;
 
-    private static final int PENGUIN_EARS_CARTON_SIZE = 20;
-    private static final int HORSE_SHOES_CARTON_SIZE = 5;
-
     @Override
     public PriceCalculateResponse priceCalculate(List<PriceCalculateRequest> values) {
         PriceCalculateResponse result = new PriceCalculateResponse();
 
+        log.info("price calculate request {}", values);
         values.forEach(items -> {
             // PenguinEars calculation
             if (items.getType() == Integer.parseInt(priceCalculateProperties.getPenguinEars())) {
-
-                result.setTotalPriceForPenguinEars(priceCalculateComponent.finalAmount(items, PENGUIN_EARS_CARTON_SIZE));
+                log.info("price calculate for PenguinEars");
+                result.setTotalPriceForPenguinEars(priceCalculateComponent.finalAmount(items, Constants.PENGUIN_EARS_CARTON_SIZE));
             }
             // HorseShoes calculation
             if (items.getType() == Integer.parseInt(priceCalculateProperties.getHorseShoes())) {
-
-                result.setTotalPriceForHorseShoes(priceCalculateComponent.finalAmount(items, HORSE_SHOES_CARTON_SIZE));
+                log.info("price calculate for HorseShoes");
+                result.setTotalPriceForHorseShoes(priceCalculateComponent.finalAmount(items, Constants.HORSE_SHOES_CARTON_SIZE));
             }
         });
 
@@ -52,37 +54,33 @@ public class PriceManagementServiceImpl implements PriceManagementService {
     public PriceListResponse getHorseShoePrices() throws Exception {
         PriceListResponse resultList = new PriceListResponse();
         //get prices of 50 items
-        try {
-            List<Product> product = this.productRepository.findAll();
-            product.forEach(item -> {
-                if (item.getId() == Integer.parseInt(priceCalculateProperties.getHorseShoes())) {
-                    resultList.setProductList(priceReturningComponent.priceList(5, item, 10));
-                }
-            });
 
-            return resultList;
+        log.info("get horse shoe price list");
+        List<Product> product = this.productRepository.findAll();
+        product.forEach(item -> {
+            if (item.getId() == Integer.parseInt(priceCalculateProperties.getHorseShoes())) {
+                resultList.setProductList(priceReturningComponent.priceList(Constants.HORSE_SHOES_CARTON_SIZE, item));
+            }
+        });
 
-        } catch (Exception e) {
-            throw new Exception("Getting Horse Shoe Prices Failed");
-        }
+        return resultList;
+
     }
 
     @Override
     public PriceListResponse getPenguinEarsPrices() throws Exception {
         PriceListResponse resultList = new PriceListResponse();
         //get prices of 50 items
-        try {
-            List<Product> product = this.productRepository.findAll();
-            product.forEach(item -> {
-                if (item.getId() == Integer.parseInt(priceCalculateProperties.getPenguinEars())) {
-                    resultList.setProductList(priceReturningComponent.priceList(20, item, 2));
-                }
-            });
 
-            return resultList;
-        } catch (Exception e) {
-            throw new Exception("Getting PenguinEars Prices Failed");
-        }
+        log.info("get penguin ears price list");
+        List<Product> product = this.productRepository.findAll();
+        product.forEach(item -> {
+            if (item.getId() == Integer.parseInt(priceCalculateProperties.getPenguinEars())) {
+                resultList.setProductList(priceReturningComponent.priceList(Constants.PENGUIN_EARS_CARTON_SIZE, item));
+            }
+        });
+
+        return resultList;
 
     }
 }

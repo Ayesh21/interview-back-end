@@ -142,7 +142,7 @@ public class PriceManagementServiceTest {
 		mockList.add(p1);
 		mockList.add(p2);
 		mockList.add(p3);
-		when(priceReturningComponent.priceList(anyInt(), any(), anyInt())).thenReturn(mockList);
+		when(priceReturningComponent.priceList(anyInt(), any())).thenReturn(mockList);
 
 		// when
 		PriceListResponse response = priceCalculateService.getPenguinEarsPrices();
@@ -177,7 +177,7 @@ public class PriceManagementServiceTest {
 		mockList.add(p1);
 		mockList.add(p2);
 		mockList.add(p3);
-		when(priceReturningComponent.priceList(anyInt(), any(), anyInt())).thenReturn(mockList);
+		when(priceReturningComponent.priceList(anyInt(), any())).thenReturn(mockList);
 
 		// when
 		PriceListResponse response = priceCalculateService.getHorseShoePrices();
@@ -213,7 +213,7 @@ public class PriceManagementServiceTest {
 		when(priceCalculateProperties.getPenguinEars()).thenReturn("1");
 		when(priceCalculateProperties.getHorseShoes()).thenReturn("2");
 		when(productRepository.findAll()).thenReturn(null);
-		when(priceReturningComponent.priceList(anyInt(), any(), anyInt())).thenReturn(null);
+		when(priceReturningComponent.priceList(anyInt(), any())).thenReturn(null);
 
 		// when
 		PriceListResponse response = priceCalculateService.getPenguinEarsPrices();
@@ -229,7 +229,7 @@ public class PriceManagementServiceTest {
 		when(priceCalculateProperties.getPenguinEars()).thenReturn("1");
 		when(priceCalculateProperties.getHorseShoes()).thenReturn("2");
 		when(productRepository.findAll()).thenReturn(null);
-		when(priceReturningComponent.priceList(anyInt(), any(), anyInt())).thenReturn(null);
+		when(priceReturningComponent.priceList(anyInt(), any())).thenReturn(null);
 
 		// when
 		PriceListResponse response = priceCalculateService.getHorseShoePrices();
