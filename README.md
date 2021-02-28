@@ -1,7 +1,7 @@
-# technical-interview.
+# Technical Interview.
 Technical Interview 99X-Technology
 
-# prerequisites 
+# Prerequisites 
 JDK 1.8
 
 # Import the code directly to the Preferred IDE
