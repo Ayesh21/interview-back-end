@@ -9,9 +9,11 @@ import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.ErrorCollector;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.interview.component.PriceCalculateComponent;
 import com.interview.dto.request.PriceCalculateRequest;
@@ -20,7 +22,7 @@ import com.interview.repository.entities.Price;
 import com.interview.repository.entities.Product;
 
 
-
+@RunWith(MockitoJUnitRunner.class)
 class PriceCalculateComponentTest {
 
 	@Rule
@@ -41,9 +43,9 @@ class PriceCalculateComponentTest {
         
         Price price = new Price();
         price.setId(1);
-        price.setCartonPrice("175");
+        price.setCartonPrice(175);
         price.setProduct(p);
-        price.setUnitPrice("11.375");
+        price.setCartonSize("1");
         
     	when(priceRepository.findById(1)).thenReturn(Optional.of(price));
     }

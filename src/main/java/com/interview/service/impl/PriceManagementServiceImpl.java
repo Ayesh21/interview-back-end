@@ -51,7 +51,7 @@ public class PriceManagementServiceImpl implements PriceManagementService {
     }
 
     @Override
-    public PriceListResponse getHorseShoePrices() throws Exception {
+    public PriceListResponse getHorseShoePrices(){
         PriceListResponse resultList = new PriceListResponse();
         //get prices of 50 items
 
@@ -68,7 +68,7 @@ public class PriceManagementServiceImpl implements PriceManagementService {
     }
 
     @Override
-    public PriceListResponse getPenguinEarsPrices() throws Exception {
+    public PriceListResponse getPenguinEarsPrices() {
         PriceListResponse resultList = new PriceListResponse();
         //get prices of 50 items
 

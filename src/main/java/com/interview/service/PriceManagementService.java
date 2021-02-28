@@ -9,7 +9,7 @@ import java.util.List;
 public interface PriceManagementService {
 
     PriceCalculateResponse priceCalculate(List<PriceCalculateRequest> values);
-    PriceListResponse getHorseShoePrices() throws Exception;
-    PriceListResponse getPenguinEarsPrices() throws Exception;
+    PriceListResponse getHorseShoePrices();
+    PriceListResponse getPenguinEarsPrices();
 
 }
