@@ -3,7 +3,9 @@
 This is a test project created to demonstrate a simple price calculator using Java - Spring boot.
 
 # Prerequisites 
-JDK 1.8
+Beginner or intermediate Java 8 programming skills 
+Familiarity with Spring Boot, Spring Hibernate, JPA, Mockito Unit Testing
+
 
 # Import the code directly to the Preferred IDE
 Spring Tool Suite (STS)
