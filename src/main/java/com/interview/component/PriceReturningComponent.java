@@ -17,6 +17,9 @@ public class PriceReturningComponent {
 
     private final PriceRepository priceRepository;
 
+    private final PriceCalculateComponent priceCalculateComponent;
+
+
     public List<ProductsDTO> priceList(int cartonSize, Product item, int number) {
         List<ProductsDTO> prices = new ArrayList<>();
         Optional<Price> priceOptional = this.priceRepository.findById(item.getId());
@@ -31,23 +34,13 @@ public class PriceReturningComponent {
         double cartonTotal = 0;
         for (int x = 1; x < 51; x++) {
 
+            double cartonPrice = Double.parseDouble(price.getCartonPrice());
+
             ProductsDTO product = new ProductsDTO();
+            double unitPrice = priceCalculateComponent.getTotalUnitPrice(x, cartonSize, price);
 
-            int numCartons = x / cartonSize;
-            int remainder = x % cartonSize;
-
-            if (remainder != 0 && numCartons <= number) {
-                unitTotal = Double.parseDouble(price.getUnitPrice()) * remainder;
-            }
-
-            if (remainder == 0 && numCartons >= 1) {
-                cartonTotal = Double.parseDouble(price.getCartonPrice()) * numCartons;
-                unitTotal = 0;
-            }
-
-            total = unitTotal + cartonTotal;
             product.setQuantity(String.valueOf(x));
-            product.setValue(String.valueOf(total));
+            product.setValue(String.valueOf(unitPrice));
             prices.add(product);
         }
 

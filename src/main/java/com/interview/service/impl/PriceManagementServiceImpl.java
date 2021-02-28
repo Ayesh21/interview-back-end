@@ -23,6 +23,9 @@ public class PriceManagementServiceImpl implements PriceManagementService {
     private final PriceCalculateComponent priceCalculateComponent;
     private final PriceReturningComponent priceReturningComponent;
 
+    private static final int PENGUIN_EARS_CARTON_SIZE = 20;
+    private static final int HORSE_SHOES_CARTON_SIZE = 5;
+
     @Override
     public PriceCalculateResponse priceCalculate(List<PriceCalculateRequest> values) {
         PriceCalculateResponse result = new PriceCalculateResponse();
@@ -31,12 +34,12 @@ public class PriceManagementServiceImpl implements PriceManagementService {
             // PenguinEars calculation
             if (items.getType() == Integer.parseInt(priceCalculateProperties.getPenguinEars())) {
 
-                result.setTotalPriceForPenguinEars(priceCalculateComponent.finalAmount(items, 20));
+                result.setTotalPriceForPenguinEars(priceCalculateComponent.finalAmount(items, PENGUIN_EARS_CARTON_SIZE));
             }
             // HorseShoes calculation
             if (items.getType() == Integer.parseInt(priceCalculateProperties.getHorseShoes())) {
 
-                result.setTotalPriceForHorseShoes(priceCalculateComponent.finalAmount(items, 5));
+                result.setTotalPriceForHorseShoes(priceCalculateComponent.finalAmount(items, HORSE_SHOES_CARTON_SIZE));
             }
         });
 
