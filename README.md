@@ -20,7 +20,7 @@ The price structures are as follows:
 - If you purchase 3 cartons or more, you will receive a 10% discount off the carton price
 
 # Background 
-When executing this project the test coverage ( using jacoco ) of the implementation can be seen when executing this project
+When executing this project the test coverage ( using jacoco ) of the implementation can be seen
 
 # Database Scripts
 The DB scripts for the project are as follows:
